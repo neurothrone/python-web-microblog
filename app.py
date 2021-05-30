@@ -1,16 +1,21 @@
 import datetime
+import os
 
+from dotenv import load_dotenv
 from flask import Flask, render_template, request
 from pymongo import MongoClient
 
 from post import Post
 
 
+load_dotenv()
+
+
 # Wrap everything in create_app() function (must be named as such) and return
 # app at the end. Future proofing.
 def create_app():
     app = Flask(__name__, template_folder="templates")
-    client = MongoClient("mongodb+srv://zaid:Sz5L3Jm8EnwQiU5@microblog-application.4xpjt.mongodb.net/test")
+    client = MongoClient(os.environ.get("MONGODB_URI"))
     app.db = client.microblog
 
     @app.route("/", methods=["GET", "POST"])
