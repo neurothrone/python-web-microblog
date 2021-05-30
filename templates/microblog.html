@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microblog</title>
+    <!--CSS-->
+    <link rel="stylesheet" href="../static/css/microblog.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="navbar__brand">
+        <img class="navbar__logo" src="../static/img/zn_logo.svg" alt="the site logo">
+        <p>Microblog</p>
+    </div>
+    <nav>
+        <ul class="navbar__navigation">
+            <li class="navbar__navigation-item">
+                <a class="navbar__link" href="#">Recent</a>
+            </li>
+            <li class="navbar__navigation-item">
+                <a class="navbar__link" href="#">Calendar</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main class="main">
+    <section>
+        <h1>Add new post</h1>
+        <form class="form" action="/" method="post">
+            <p class="form__input">
+                <textarea
+                        class="form__textarea"
+                        name="new_post_content"
+                        id="new_post_content"
+                        placeholder="Write a log for today!"
+                        aria-label="Post contents"></textarea>
+            </p>
+            <button class="form__button" type="submit">Add post</button>
+        </form>
+    </section>
+
+    <section>
+        <h1>Recent posts</h1>
+
+        {% if posts %}
+        {% for post in posts %}
+
+        <article class="post">
+            <header>
+                <h2 class="post__title">{{post.title}}</h2>
+                <time class="post__date" datetime="{{post.date}}">• {{post.formatted_date()}}</time>
+            </header>
+            <p class="post__content">{{post.content}}</p>
+        </article>
+
+        {% endfor %}
+        {% endif %}
+
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="footer__content">
+        <section class="left">
+            <a href="#" class="footer__item">Made by Zaid Neurothrone</a>
+            <a href="#" class="footer__item">Check out my other projects ➡ Portfolio</a>
+        </section>
+
+        <section class="right">
+            <div class="footer__column">
+                <a href="#" class="footer__item">Recent</a>
+                <a href="#" class="footer__item">Calendar</a>
+            </div>
+            <div class="footer__column">
+                <a href="#" class="footer__item">About</a>
+                <a href="#" class="footer__item">How this was made</a>
+            </div>
+        </section>
+    </div>
+</footer>
+
+</body>
+</html>
